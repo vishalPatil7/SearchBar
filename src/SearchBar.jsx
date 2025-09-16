@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { dummyData } from "./assets/dummy";
 import SearchInput from "./components/SearchInput";
 import Tabs from "./components/Tabs";
-import FilterDropdown from "./components/FilterDropDown";
+import FilterDropdown from "./components/FilterDropdown";
 import ResultItem from "./components/ResultItem";
 
 export default function SearchBar() {
