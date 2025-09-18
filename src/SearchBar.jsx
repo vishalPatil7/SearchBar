@@ -4,6 +4,7 @@ import SearchInput from "./components/SearchInput";
 import Tabs from "./components/Tabs";
 import FilterDropdown from "./components/FilterDropdown";
 import ResultItem from "./components/ResultItem";
+import TypeIntoSearch from "./components/TypeIntoSearch";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
@@ -63,50 +64,53 @@ export default function SearchBar() {
       : results;
 
   return (
-    <div className="relative w-[500px] mx-auto mt-8 bg-white shadow rounded-2xl p-4">
-      <SearchInput
-        query={query}
-        setQuery={setQuery}
-        loading={loading}
-        onClear={handleClear}
-      />
+    <>
+      <div className="relative w-[500px] mx-auto mt-8 bg-white shadow rounded-2xl p-4">
+        <SearchInput
+          query={query}
+          setQuery={setQuery}
+          loading={loading}
+          onClear={handleClear}
+        />
 
-      {query !== "" && (
-        <>
-          <div className="flex items-center justify-between max-h-8 ml-2 mt-3">
-            <Tabs
-              active={active}
-              setActive={setActive}
-              counts={counts}
-              checked={checked}
-            />
-            <FilterDropdown
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              checked={checked}
-              handleChecked={handleChecked}
-            />
-          </div>
+        {query !== "" && (
+          <>
+            <div className="flex items-center justify-between max-h-8 ml-2 mt-3">
+              <Tabs
+                active={active}
+                setActive={setActive}
+                counts={counts}
+                checked={checked}
+              />
+              <FilterDropdown
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                checked={checked}
+                handleChecked={handleChecked}
+              />
+            </div>
 
-          <div className="absolute left-0 right-0 h-0.5 mt-2 w-full bg-gray-200 shadow-md"></div>
+            <div className="absolute left-0 right-0 h-0.5 mt-2 w-full bg-gray-200 shadow-md"></div>
 
-          <div className="mt-4 space-y-3 max-h-[400px] overflow-auto">
-            {loading ? (
-              <p className="text-center text-gray-500 text-sm py-4">
-                Searching...
-              </p>
-            ) : results.length === 0 ? (
-              <p className="text-center text-gray-500 text-sm py-4">
-                No results found
-              </p>
-            ) : (
-              tabBasedResults.map((item) => (
-                <ResultItem key={item.id} item={item} query={query} />
-              ))
-            )}
-          </div>
-        </>
-      )}
-    </div>
+            <div className="mt-4 space-y-3 max-h-[400px] overflow-auto">
+              {loading ? (
+                <p className="text-center text-gray-500 text-sm py-4">
+                  Searching...
+                </p>
+              ) : results.length === 0 ? (
+                <p className="text-center text-gray-500 text-sm py-4">
+                  No results found
+                </p>
+              ) : (
+                tabBasedResults.map((item) => (
+                  <ResultItem key={item.id} item={item} query={query} />
+                ))
+              )}
+            </div>
+          </>
+        )}
+      </div>
+      {query == "" && <TypeIntoSearch />}
+    </>
   );
 }
