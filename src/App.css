@@ -3,4 +3,11 @@
   margin: 0 auto;
   padding: 4rem;
   text-align: center;
+} 
+
+.search-message {
+  position: fixed;    /* stays at bottom-right even when scrolling */
+  bottom: 20px;
+  right: 20px;
+  text-align: right;
 }
